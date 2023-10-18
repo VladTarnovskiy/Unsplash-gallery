@@ -2,13 +2,15 @@ import { FilterPictures } from "@/components/FilterPictures";
 import { Pagination } from "@/components/Pagination";
 import { Pictures } from "@/components/Pictures";
 import { SearchPictures } from "@/components/SearchPictures";
-import { SortPictures } from "@/components/SortPictures";
+import { SortPicturesManual } from "@/components/SortPicturesManual";
+import { SortPicturesWithApi } from "@/components/SortPicturesWithApi";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-16">
-      <div className="search-container w-full flex justify-center  mb-4">
-        <SortPictures />
+    <div className="flex min-h-screen flex-col items-center justify-between p-10">
+      <div className="search-container w-full flex flex-wrap justify-center mb-6 items-center">
+        <SortPicturesManual />
+        <SortPicturesWithApi />
         <SearchPictures />
         <FilterPictures />
       </div>

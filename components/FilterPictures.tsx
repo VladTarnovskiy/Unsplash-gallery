@@ -5,18 +5,18 @@ import { onChange } from "@material-tailwind/react/types/components/select";
 import { shallow } from "zustand/shallow";
 
 export const FilterPictures = () => {
-  const [setSearch, getPicturesBySearch] = usePosts(
-    (state) => [state.setSearch, state.getPicturesBySearch],
+  const [setFilter, getPicturesByFilter] = usePosts(
+    (state) => [state.setFilter, state.getPicturesByFilter],
     shallow
   );
 
   const handleSubmit: onChange = async (value) => {
-    setSearch(value!);
-    await getPicturesBySearch();
+    setFilter(value!);
+    await getPicturesByFilter();
   };
 
   return (
-    <div>
+    <div className="mr-10 mt-2">
       <Select onChange={handleSubmit} label="Filter by category">
         <Option value="nature">nature</Option>
         <Option value="cities">cities</Option>

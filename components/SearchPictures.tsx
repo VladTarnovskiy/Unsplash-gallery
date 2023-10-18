@@ -17,7 +17,7 @@ export const SearchPictures = () => {
     await getPicturesBySearch();
   };
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center mr-10">
+    <form onSubmit={handleSubmit} className="flex justify-center mr-10 mt-2">
       <div>
         <Input
           label="Search"

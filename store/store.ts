@@ -1,5 +1,10 @@
-import { getPicturesBySearch } from "@/services/getPictures";
-
+import {
+  getPicturesBySearch,
+  sortByDateDec,
+  sortByDateInk,
+  sortByPopularDec,
+  sortByPopularInk,
+} from "@/services/getPictures";
 import { createWithEqualityFn } from "zustand/traditional";
 
 type UsePosts = {
@@ -11,17 +16,18 @@ type UsePosts = {
   loading: boolean;
   totalPages: number;
   getPicturesBySearch: () => Promise<void>;
-  // getPicturesByFilter: () => Promise<void>;
+  getPicturesByFilter: () => Promise<void>;
   setPage: (newPage: number) => void;
   setSearch: (newSearch: string) => void;
-  // setFilter: (newFilter: string) => void;
-  setSort: (newFSort: string) => void;
+  setFilter: (newFilter: string) => void;
+  setSortWithApi: (newSort: string) => void;
+  setSortManual: (newSort: string) => void;
 };
 export const usePosts = createWithEqualityFn<UsePosts>((set, get) => ({
   pictures: [],
   search: "space",
   filter: "",
-  sort: "latest",
+  sort: "relevant",
   page: 1,
   loading: false,
   totalPages: 10,
@@ -41,20 +47,47 @@ export const usePosts = createWithEqualityFn<UsePosts>((set, get) => ({
       totalPages: pictures.total_pages,
     });
   },
-  // getPicturesByFilter: async () => {
-  //   set({ loading: true });
-  //   const page = get().page;
-  //   const filter = get().filter;
-  //   const sort = get().sort;
-  //   const pictures: SearchResponse = await getPicturesBySearch({
-  //     search: filter,
-  //     page,
-  //     sort,
-  //   });
-  //   set({ pictures: pictures.results, loading: false });
-  // },
+  getPicturesByFilter: async () => {
+    set({ loading: true });
+    const page = get().page;
+    const filter = get().filter;
+    const sort = get().sort;
+    const pictures: SearchResponse = await getPicturesBySearch({
+      search: filter,
+      page,
+      sort,
+    });
+    set({
+      pictures: pictures.results,
+      loading: false,
+      totalPages: pictures.total_pages,
+    });
+  },
   setPage: (newPage: number) => set({ page: newPage }),
   setSearch: (newSearch: string) => set({ search: newSearch }),
-  // setFilter: (newFilter: string) => set({ filter: newFilter }),
-  setSort: (newSort: string) => set({ sort: newSort }),
+  setFilter: (newFilter: string) => set({ filter: newFilter }),
+  setSortWithApi: (newSort: string) => set({ sort: newSort }),
+  setSortManual: (newSort: string) => {
+    const pictures = get().pictures;
+    switch (newSort) {
+      case "popularInc":
+        const x: Card[] = sortByPopularInk(pictures);
+        console.log(x);
+        set({ pictures: x });
+        break;
+
+      case "popularDec":
+        const y: Card[] = sortByPopularDec(pictures);
+        set({ pictures: y });
+        break;
+
+      case "dateInc":
+        set({ pictures: sortByDateInk(pictures) });
+        break;
+
+      case "dateDec":
+        set({ pictures: sortByDateDec(pictures) });
+        break;
+    }
+  },
 }));
