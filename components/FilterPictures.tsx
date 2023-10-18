@@ -22,7 +22,7 @@ export const FilterPictures = () => {
         <Option value="cities">cities</Option>
         <Option value="animals">animals</Option>
         <Option value="space">space</Option>
-        <Option value="people">peoples</Option>
+        <Option value="art">art</Option>
       </Select>
     </div>
   );

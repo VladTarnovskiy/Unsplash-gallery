@@ -17,12 +17,14 @@
     "next-redux-wrapper": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "uniqid": "^5.4.0",
     "zustand": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uniqid": "^5.3.3",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.5",

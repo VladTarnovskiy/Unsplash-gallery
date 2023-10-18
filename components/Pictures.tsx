@@ -4,6 +4,7 @@ import { CardDefault } from "./Card";
 import { shallow } from "zustand/shallow";
 import { useEffect } from "react";
 import { CustomSpinner } from "./Spinner";
+import uniqid from "uniqid";
 
 export const Pictures = () => {
   const [pictures, loading, getPicturesBySearch] = usePosts(
@@ -23,7 +24,7 @@ export const Pictures = () => {
       ) : (
         <>
           {pictures.map((picture: Card) => (
-            <CardDefault key={picture.id} picture={picture} />
+            <CardDefault key={uniqid()} picture={picture} />
           ))}
         </>
       )}

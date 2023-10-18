@@ -9,12 +9,19 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { HeartIcon } from "@heroicons/react/24/outline";
+import { usePosts } from "@/store/store";
+import { shallow } from "zustand/shallow";
+import uniqid from "uniqid";
 
 interface Props {
   picture: Card;
 }
 
 export function CardDefault({ picture }: Props) {
+  const [setSearch, getPicturesBySearch] = usePosts(
+    (state) => [state.setSearch, state.getPicturesBySearch],
+    shallow
+  );
   const date = picture.created_at.split("T")[0];
 
   return (
@@ -23,20 +30,30 @@ export function CardDefault({ picture }: Props) {
         <Link href={picture.links.download}>
           <Image
             src={picture.urls.small}
-            fill={true}
+            // fill={true}
+            width={360}
+            height={250}
             alt="card-image"
             className="hover:scale-105"
           />
         </Link>
       </CardHeader>
-      <div className="tags flex flex-wrap justify-start px-6">
+      <div className="tags flex flex-wrap justify-start px-6 mt-1">
         {picture.tags.map((item) => (
-          <Chip
-            key={picture.id}
-            variant="ghost"
-            value={item.title}
-            className="w-fit font text-[12px] p-1 m-1"
-          />
+          <div
+            key={uniqid()}
+            onClick={() => {
+              setSearch(item.title.toLowerCase());
+              getPicturesBySearch();
+            }}
+            className="hover:cursor-pointer hover:scale-105"
+          >
+            <Chip
+              variant="ghost"
+              value={item.title}
+              className="w-fit font text-[12px] p-1 m-1 "
+            />
+          </div>
         ))}
       </div>
       <CardBody className="pt-3">
