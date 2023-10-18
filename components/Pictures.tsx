@@ -15,9 +15,9 @@ export const Pictures = () => {
     getPicturesBySearch();
   }, [getPicturesBySearch]);
 
-  console.log(pictures);
   return (
     <ul className="pictures-container w-full">
+      {!pictures.length && !loading && "Nothing found."}
       {loading ? (
         <CustomSpinner />
       ) : (

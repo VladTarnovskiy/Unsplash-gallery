@@ -9,6 +9,7 @@ type UsePosts = {
   sort: string;
   page: number;
   loading: boolean;
+  totalPages: number;
   getPicturesBySearch: () => Promise<void>;
   // getPicturesByFilter: () => Promise<void>;
   setPage: (newPage: number) => void;
@@ -23,6 +24,7 @@ export const usePosts = createWithEqualityFn<UsePosts>((set, get) => ({
   sort: "latest",
   page: 1,
   loading: false,
+  totalPages: 10,
   getPicturesBySearch: async () => {
     set({ loading: true });
     const page = get().page;
@@ -33,7 +35,11 @@ export const usePosts = createWithEqualityFn<UsePosts>((set, get) => ({
       page,
       sort,
     });
-    set({ pictures: pictures.results, loading: false });
+    set({
+      pictures: pictures.results,
+      loading: false,
+      totalPages: pictures.total_pages,
+    });
   },
   // getPicturesByFilter: async () => {
   //   set({ loading: true });

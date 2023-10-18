@@ -3,10 +3,16 @@ import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { usePosts } from "@/store/store";
 import { shallow } from "zustand/shallow";
+import { CardsCounter } from "./CardsCounter";
 
 export function Pagination() {
-  const [page, setPage, getPicturesBySearch] = usePosts(
-    (state) => [state.page, state.setPage, state.getPicturesBySearch],
+  const [page, setPage, getPicturesBySearch, totalPages] = usePosts(
+    (state) => [
+      state.page,
+      state.setPage,
+      state.getPicturesBySearch,
+      state.totalPages,
+    ],
     shallow
   );
 
@@ -36,13 +42,13 @@ export function Pagination() {
       </IconButton>
       <Typography color="gray" className="font-normal">
         Page <strong className="text-gray-900">{page}</strong> of{" "}
-        <strong className="text-gray-900">10</strong>
+        <strong className="text-gray-900">{totalPages}</strong>
       </Typography>
       <IconButton
         size="sm"
         variant="outlined"
         onClick={next}
-        disabled={page === 10}
+        disabled={page === totalPages}
       >
         <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
       </IconButton>

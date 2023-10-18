@@ -11,6 +11,7 @@ export async function getPicturesBySearch({
     params: {
       query: search,
       page: page ?? 1,
+      per_page: 12,
       order_by: sort ?? "latest",
       client_id: "sP8YdBsJSg8cHVqUXc7g4K4Ts3fEzyCZeQv4KDu2fR8",
     },

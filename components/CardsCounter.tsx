@@ -6,7 +6,7 @@ import Search from "/assets/search.svg";
 import { usePosts } from "@/store/store";
 import { shallow } from "zustand/shallow";
 
-export const SearchPictures = () => {
+export const CardsCounter = () => {
   const [search, setSearch, getPicturesBySearch] = usePosts(
     (state) => [state.search, state.setSearch, state.getPicturesBySearch],
     shallow
@@ -17,26 +17,16 @@ export const SearchPictures = () => {
     await getPicturesBySearch();
   };
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center mr-10">
-      <div>
-        <Input
-          label="Search"
-          crossOrigin={undefined}
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-        />
-      </div>
-      <IconButton variant="gradient" type="submit" className="ml-[-8px]">
-        <Image
-          className="h-6 w-6"
-          src={Search}
-          width={20}
-          height={20}
-          alt="Search"
-        />
-      </IconButton>
-    </form>
+    <div>
+      <Input
+        label="Search"
+        className="w-20"
+        crossOrigin={undefined}
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+      />
+    </div>
   );
 };

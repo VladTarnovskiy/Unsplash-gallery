@@ -6,7 +6,7 @@ import { SortPictures } from "@/components/SortPictures";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex min-h-screen flex-col items-center justify-between p-16">
       <div className="search-container w-full flex justify-center  mb-4">
         <SortPictures />
         <SearchPictures />

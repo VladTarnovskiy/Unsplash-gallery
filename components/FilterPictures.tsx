@@ -17,7 +17,7 @@ export const FilterPictures = () => {
 
   return (
     <div>
-      <Select onChange={handleSubmit} label="Select category">
+      <Select onChange={handleSubmit} label="Filter by category">
         <Option value="nature">nature</Option>
         <Option value="cities">cities</Option>
         <Option value="animals">animals</Option>

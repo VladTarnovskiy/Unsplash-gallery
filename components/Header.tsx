@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Img from "/assets/unsplash.svg";
+import Logo from "/assets/unsplash.svg";
 
 export const Header = () => {
   return (
@@ -7,7 +7,7 @@ export const Header = () => {
       <div className="flex-shrink-0">
         <Image
           className="h-16 w-16"
-          src={Img}
+          src={Logo}
           width={100}
           height={100}
           alt="Unsplash"
