@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .container {
-  max-width: 900px;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin-top: auto;
-} */
+.pictures-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(384px, 1fr));
+  justify-items: center;
+  gap: 10px;
+}

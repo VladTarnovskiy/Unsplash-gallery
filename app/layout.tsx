@@ -20,11 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* <Providers> */}
         <Header />
-        <main className="container">{children}</main>
+        <main className="container max-w-[1600px] m-auto">{children}</main>
         <Footer />
-        {/* </Providers> */}
       </body>
     </html>
   );
