@@ -29,7 +29,7 @@ export function CardDefault({ picture }: Props) {
         </Typography>
       </CardBody>
       <CardFooter className="pt-0 mt-auto">
-        <Button size="sm">
+        <Button size="sm" variant="gradient">
           <Link href={picture.links.download}>Downloads</Link>
         </Button>
       </CardFooter>

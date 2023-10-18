@@ -18,4 +18,5 @@ interface SearchResponse {
 interface RequestProps {
   search: string;
   page?: number;
+  sort?: string;
 }

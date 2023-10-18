@@ -1,22 +1,20 @@
 "use client";
 import Image from "next/image";
-import { getPicturesBySearch } from "@/services/getPictures";
 import { IconButton, Input } from "@material-tailwind/react";
 import { FormEventHandler, useState } from "react";
 import Search from "/assets/search.svg";
+import { usePosts } from "@/store/store";
+import { shallow } from "zustand/shallow";
 
-type Props = {
-  onSearch: (value: string) => void;
-  getPicture: () => void;
-};
-
-export const SearchPictures = ({ onSearch, getPicture }: Props) => {
-  const [search, setSearch] = useState("space");
+export const SearchPictures = () => {
+  const [search, setSearch, getPicturesBySearch] = usePosts(
+    (state) => [state.search, state.setSearch, state.getPicturesBySearch],
+    shallow
+  );
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    onSearch(search);
-    getPicture();
+    await getPicturesBySearch();
   };
   return (
     <form onSubmit={handleSubmit} className="flex justify-center mr-10">

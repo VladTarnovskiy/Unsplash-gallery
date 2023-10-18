@@ -1,29 +1,27 @@
-import React, { useState } from "react";
+"use client";
 import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { usePosts } from "@/store/store";
+import { shallow } from "zustand/shallow";
 
-interface Props {
-  setPage: (value: number) => void;
-  getPicture: () => Promise<void>;
-}
-
-export function Pagination({ setPage, getPicture }: Props) {
-  const [active, setActive] = useState(1);
+export function Pagination() {
+  const [page, setPage, getPicturesBySearch] = usePosts(
+    (state) => [state.page, state.setPage, state.getPicturesBySearch],
+    shallow
+  );
 
   const next = async () => {
-    if (active === 10) return;
+    if (page === 10) return;
 
-    setActive(active + 1);
-    setPage(active);
-    await getPicture();
+    setPage(page + 1);
+    await getPicturesBySearch();
   };
 
   const prev = async () => {
-    if (active === 1) return;
+    if (page === 1) return;
 
-    setActive(active - 1);
-    setPage(active);
-    await getPicture();
+    setPage(page - 1);
+    await getPicturesBySearch();
   };
 
   return (
@@ -32,19 +30,19 @@ export function Pagination({ setPage, getPicture }: Props) {
         size="sm"
         variant="outlined"
         onClick={prev}
-        disabled={active === 1}
+        disabled={page === 1}
       >
         <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
       </IconButton>
       <Typography color="gray" className="font-normal">
-        Page <strong className="text-gray-900">{active}</strong> of{" "}
+        Page <strong className="text-gray-900">{page}</strong> of{" "}
         <strong className="text-gray-900">10</strong>
       </Typography>
       <IconButton
         size="sm"
         variant="outlined"
         onClick={next}
-        disabled={active === 10}
+        disabled={page === 10}
       >
         <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
       </IconButton>
