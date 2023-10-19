@@ -18,8 +18,14 @@ interface SearchResponse {
   total: number;
   total_pages: number;
 }
+
 interface RequestProps {
   search: string;
   page?: number;
   sort?: string;
+}
+
+interface MyUser {
+  email: string;
+  password: string;
 }

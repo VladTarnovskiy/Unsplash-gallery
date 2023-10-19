@@ -10,7 +10,7 @@ export async function getPicturesBySearch({
     url: `https://api.unsplash.com/search/photos`,
     params: {
       query: search,
-      page: page ?? 1,
+      page: page,
       per_page: 12,
       order_by: sort,
       client_id: "sP8YdBsJSg8cHVqUXc7g4K4Ts3fEzyCZeQv4KDu2fR8",

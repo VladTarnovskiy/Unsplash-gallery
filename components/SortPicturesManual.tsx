@@ -12,7 +12,7 @@ export const SortPicturesManual = () => {
   };
 
   return (
-    <div className="mr-10 mt-2">
+    <div className="mr-4 mt-2">
       <Select onChange={handleSubmit} label="Sort (local)">
         <Option value="popularInc">popularInc</Option>
         <Option value="popularDec">popularDec</Option>

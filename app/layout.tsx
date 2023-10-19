@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
+import { Providers } from "@/components/Provider";
 
 export const metadata: Metadata = {
   title: "Unsplash API",
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main className="container max-w-[1600px] m-auto">{children}</main>
-        <Footer />
+        <Providers>
+          <Header />
+          <main className="container max-w-[1600px] m-auto">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

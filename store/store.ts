@@ -25,7 +25,7 @@ type UsePosts = {
 };
 export const usePosts = createWithEqualityFn<UsePosts>((set, get) => ({
   pictures: [],
-  search: "space",
+  search: "nature",
   filter: "",
   sort: "relevant",
   page: 1,
