@@ -1,4 +1,5 @@
 "use client";
+import { loginUser } from "@/services/getUsers";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 export function SignInForm() {
   const [email, setEmail] = useState("test@test.com");
   const [password, setPassword] = useState("test1234");
+  const [alert, setAlert] = useState(false);
   const router = useRouter();
 
   const handlePassword: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -18,19 +20,24 @@ export function SignInForm() {
     setEmail(event.target.value);
   };
 
-  const handleSubmit: MouseEventHandler<HTMLButtonElement> = async (event) => {
-    const res = await signIn("credentials", {
-      email: email,
-      password: password,
-      redirect: false,
-    });
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = async () => {
+    try {
+      const user = await loginUser({ email, password });
 
-    if (res && !res.error) {
-      console.log(res);
+      const res = await signIn("credentials", {
+        email: email,
+        password: password,
+        token: user.accessToken,
+        id: String(user.user.id),
+        redirect: false,
+      });
 
-      router.push("/");
-    } else {
-      console.log(res);
+      if (res && !res.error) {
+        setAlert(false);
+        router.push("/");
+      }
+    } catch {
+      setAlert(true);
     }
   };
 
@@ -77,6 +84,15 @@ export function SignInForm() {
         <Button className="mt-6" onClick={handleSubmit} fullWidth>
           Sign In
         </Button>
+        {alert && (
+          <Typography
+            variant="small"
+            color="red"
+            className="mt-[5px] text-center"
+          >
+            Dont valid data.
+          </Typography>
+        )}
         <Typography color="gray" className="mt-4 text-center font-normal">
           Already have an account?{" "}
           <Link href="/signup" className="rounded-full underline">

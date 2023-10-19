@@ -42,27 +42,27 @@ export const registerUser = async (data: RegisterUser): Promise<Response> => {
     method: "post",
     url: `${baseURL}/register`,
     data: data,
-    headers: {
-      "Content-Type": "application/json",
-    },
   });
   return response.data;
 };
 
 export const loginUser = async (data: RegisterUser): Promise<Response> => {
-  const response = await axios.post(`${baseURL}/login`, {
-    data,
+  const response = await axios({
+    method: "post",
+    url: `${baseURL}/login`,
+    data: data,
   });
   return response.data;
 };
 
 export const getUser = async (data: GetUser): Promise<ResponseUser> => {
   const response = await axios({
-    method: "post",
+    method: "get",
     url: `${baseURL}/users/${data.id}`,
     headers: {
       Authorization: `Bearer ${data.token}`,
     },
   });
+
   return response.data;
 };

@@ -30,7 +30,6 @@ export function CardDefault({ picture }: Props) {
         <Link href={picture.links.download}>
           <Image
             src={picture.urls.small}
-            // fill={true}
             width={360}
             height={250}
             alt="card-image"

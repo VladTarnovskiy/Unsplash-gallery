@@ -1,7 +1,6 @@
-import { getUsersFromStorage } from "@/services/getUsers";
+import { ResponseUser, getUser } from "@/services/getUsers";
 import type { AuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { users } from "@/data/users";
 
 export const authConfig: AuthOptions = {
   providers: [
@@ -9,19 +8,32 @@ export const authConfig: AuthOptions = {
       credentials: {
         email: { label: "email", type: "email", required: true },
         password: { label: "password", type: "password", required: true },
+        token: { label: "token", type: "text", required: true },
+        id: { label: "id", type: "text", required: true },
       },
       async authorize(credentials) {
-        // const users: MyUser[] = getUsersFromStorage();
+        if (
+          !credentials?.email ||
+          !credentials.password ||
+          !credentials.token ||
+          !credentials.id
+        ) {
+          return null;
+        }
 
-        if (!credentials?.email || !credentials.password) return null;
+        const currentUser: ResponseUser = await getUser({
+          id: Number(credentials?.id),
+          token: credentials?.token,
+        });
 
-        const currentUser = users.find(
-          (user) => user.email === credentials.email
-        );
-        if (currentUser && currentUser.password === credentials.password) {
+        if (currentUser && currentUser.email === credentials.email) {
           const { password, ...userWithoutPass } = currentUser;
+          const respWithoutPassword = {
+            email: userWithoutPass.email,
+            id: String(userWithoutPass.id),
+          };
 
-          return userWithoutPass as User;
+          return respWithoutPassword as User;
         }
 
         return null;
