@@ -15,7 +15,6 @@ export const authConfig: AuthOptions = {
 
         if (!credentials?.email || !credentials.password) return null;
 
-        console.log(users);
         const currentUser = users.find(
           (user) => user.email === credentials.email
         );

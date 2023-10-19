@@ -20,7 +20,6 @@ export async function getPicturesBySearch({
 }
 
 export const sortByPopularInk = (pictures: Card[]) => {
-  console.log(pictures);
   const sorted = JSON.parse(JSON.stringify(pictures)).sort(
     (a: Card, b: Card) => {
       return a.likes - b.likes;

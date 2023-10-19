@@ -64,6 +64,5 @@ export const getUser = async (data: GetUser): Promise<ResponseUser> => {
       Authorization: `Bearer ${data.token}`,
     },
   });
-  console.log("response");
   return response.data;
 };

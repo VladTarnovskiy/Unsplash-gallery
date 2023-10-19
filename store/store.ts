@@ -72,7 +72,6 @@ export const usePosts = createWithEqualityFn<UsePosts>((set, get) => ({
     switch (newSort) {
       case "popularInc":
         const x: Card[] = sortByPopularInk(pictures);
-        console.log(x);
         set({ pictures: x });
         break;
 
