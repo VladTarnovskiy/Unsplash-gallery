@@ -22,7 +22,7 @@ export const Header = () => {
             />
           </Link>
         </div>
-        <h1 className="text-4xl">Unsplash API</h1>
+        <h1 className="text-4xl hidden sm:block">Unsplash API</h1>
       </div>
       <div>
         {session?.data && (
