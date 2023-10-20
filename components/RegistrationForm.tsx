@@ -1,5 +1,5 @@
 "use client";
-import { registerUser } from "@/services/getUsers";
+import { getUser, registerUser } from "@/services/getUsers";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";

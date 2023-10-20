@@ -1,23 +1,27 @@
 import axios from "axios";
 
-export async function getPicturesBySearch({
+export const getPicturesBySearch = async ({
   search,
   page,
   sort,
-}: RequestProps) {
-  const response = await axios({
-    method: "get",
-    url: `https://api.unsplash.com/search/photos`,
-    params: {
-      query: search,
-      page: page,
-      per_page: 12,
-      order_by: sort,
-      client_id: "sP8YdBsJSg8cHVqUXc7g4K4Ts3fEzyCZeQv4KDu2fR8",
-    },
-  });
-  return response.data;
-}
+}: RequestProps) => {
+  try {
+    const response = await axios({
+      method: "get",
+      url: `https://api.unsplash.com/search/photos`,
+      params: {
+        query: search,
+        page: page,
+        per_page: 12,
+        order_by: sort,
+        client_id: "sP8YdBsJSg8cHVqUXc7g4K4Ts3fEzyCZeQv4KDu2fR8",
+      },
+    });
+    return response.data;
+  } catch {
+    throw new Error("Unsplash error.");
+  }
+};
 
 export const sortByPopularInk = (pictures: Card[]) => {
   const sorted = JSON.parse(JSON.stringify(pictures)).sort(

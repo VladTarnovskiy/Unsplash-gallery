@@ -1,16 +1,5 @@
 import axios from "axios";
 
-export const getUsersFromStorage = () => {
-  const usersFromStorage = localStorage.getItem("users");
-  let users: MyUser[];
-  if (usersFromStorage) {
-    users = JSON.parse(usersFromStorage);
-  } else {
-    users = [];
-  }
-  return users;
-};
-
 interface RegisterUser {
   email: string;
   password: string;
@@ -38,31 +27,43 @@ interface GetUser {
 const baseURL = "https://alpine-safe-pewter.glitch.me";
 
 export const registerUser = async (data: RegisterUser): Promise<Response> => {
-  const response = await axios({
-    method: "post",
-    url: `${baseURL}/register`,
-    data: data,
-  });
-  return response.data;
+  try {
+    const response = await axios({
+      method: "post",
+      url: `${baseURL}/register`,
+      data: data,
+    });
+    return response.data;
+  } catch (err) {
+    throw new Error("User with current email already exist.");
+  }
 };
 
 export const loginUser = async (data: RegisterUser): Promise<Response> => {
-  const response = await axios({
-    method: "post",
-    url: `${baseURL}/login`,
-    data: data,
-  });
-  return response.data;
+  try {
+    const response = await axios({
+      method: "post",
+      url: `${baseURL}/login`,
+      data: data,
+    });
+    return response.data;
+  } catch (err) {
+    throw new Error("User with this data doesn't exist.");
+  }
 };
 
 export const getUser = async (data: GetUser): Promise<ResponseUser> => {
-  const response = await axios({
-    method: "get",
-    url: `${baseURL}/users/${data.id}`,
-    headers: {
-      Authorization: `Bearer ${data.token}`,
-    },
-  });
+  try {
+    const response = await axios({
+      method: "get",
+      url: `${baseURL}/users/${data.id}`,
+      headers: {
+        Authorization: `Bearer ${data.token}`,
+      },
+    });
 
-  return response.data;
+    return response.data;
+  } catch (err) {
+    throw new Error("User doesn't exist");
+  }
 };

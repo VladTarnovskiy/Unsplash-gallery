@@ -1,6 +1,7 @@
 import { ResponseUser, getUser } from "@/services/getUsers";
 import type { AuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { compareSync } from "bcryptjs";
 
 export const authConfig: AuthOptions = {
   providers: [
@@ -26,7 +27,10 @@ export const authConfig: AuthOptions = {
           token: credentials?.token,
         });
 
-        if (currentUser && currentUser.email === credentials.email) {
+        if (
+          currentUser &&
+          compareSync(credentials.password, currentUser.password)
+        ) {
           const { password, ...userWithoutPass } = currentUser;
           const respWithoutPassword = {
             email: userWithoutPass.email,
