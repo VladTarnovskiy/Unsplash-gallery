@@ -52,67 +52,69 @@ export function SignInForm() {
   };
 
   return (
-    <Card color="transparent" shadow={false} className="m-auto w-fit mt-12">
-      <div className="flex justify-start items-end">
-        <Typography variant="h4" color="blue-gray" className="h-fit">
-          Sign In
-        </Typography>
-        {spinner && <Spinner className="h-9 w-9 ml-2" />}
-      </div>
-      <Typography color="gray" className="mt-1 font-normal">
-        Nice to meet you! Enter your details.
-      </Typography>
-      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-        <div className="mb-1 flex flex-col gap-6">
-          <Typography variant="h6" color="blue-gray" className="-mb-3">
-            Your Email
+    <div>
+      <Card color="transparent" shadow={false} className="m-auto w-fit mt-12">
+        <div className="flex justify-start items-end">
+          <Typography variant="h4" color="blue-gray" className="h-fit">
+            Sign In
           </Typography>
-          <Input
-            size="lg"
-            placeholder="name@mail.com"
-            value={email}
-            onChange={handleEmail}
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
-            crossOrigin={undefined}
-          />
-          <Typography variant="h6" color="blue-gray" className="-mb-3">
-            Password
-          </Typography>
-          <Input
-            type="password"
-            onChange={handlePassword}
-            value={password}
-            size="lg"
-            placeholder="********"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
-            crossOrigin={undefined}
-          />
+          {spinner && <Spinner className="h-9 w-9 ml-2" />}
         </div>
-        <Button className="mt-6" onClick={handleSubmit} fullWidth>
-          Sign In
-        </Button>
-        {alert && (
-          <Typography
-            variant="small"
-            color="red"
-            className="mt-[5px] text-center"
-          >
-            Dont valid data.
-          </Typography>
-        )}
-        <Typography color="gray" className="mt-4 text-center font-normal">
-          Already have an account?{" "}
-          <Link href="/signup" className="rounded-full underline">
-            Sign Up
-          </Link>
+        <Typography color="gray" className="mt-1 font-normal">
+          Nice to meet you! Enter your details.
         </Typography>
-      </form>
-    </Card>
+        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+          <div className="mb-1 flex flex-col gap-6">
+            <Typography variant="h6" color="blue-gray" className="-mb-3">
+              Your Email
+            </Typography>
+            <Input
+              size="lg"
+              placeholder="name@mail.com"
+              value={email}
+              onChange={handleEmail}
+              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              labelProps={{
+                className: "before:content-none after:content-none",
+              }}
+              crossOrigin={undefined}
+            />
+            <Typography variant="h6" color="blue-gray" className="-mb-3">
+              Password
+            </Typography>
+            <Input
+              type="password"
+              onChange={handlePassword}
+              value={password}
+              size="lg"
+              placeholder="********"
+              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+              labelProps={{
+                className: "before:content-none after:content-none",
+              }}
+              crossOrigin={undefined}
+            />
+          </div>
+          <Button className="mt-6" onClick={handleSubmit} fullWidth>
+            Sign In
+          </Button>
+          {alert && (
+            <Typography
+              variant="small"
+              color="red"
+              className="mt-[5px] text-center"
+            >
+              Dont valid data.
+            </Typography>
+          )}
+          <Typography color="gray" className="mt-4 text-center font-normal">
+            Already have an account?{" "}
+            <Link href="/signup" className="rounded-full underline">
+              Sign Up
+            </Link>
+          </Typography>
+        </form>
+      </Card>
+    </div>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
-import Image from "next/image";
-import { IconButton, Input } from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react";
 import { FormEventHandler, useState } from "react";
-import Search from "/assets/search.svg";
 import { usePosts } from "@/store/store";
 import { shallow } from "zustand/shallow";
 

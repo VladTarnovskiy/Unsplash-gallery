@@ -3,7 +3,6 @@ import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { usePosts } from "@/store/store";
 import { shallow } from "zustand/shallow";
-import { CardsCounter } from "./CardsCounter";
 
 export function Pagination() {
   const [page, setPage, getPicturesBySearch, totalPages] = usePosts(

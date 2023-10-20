@@ -28,13 +28,17 @@ export function CardDefault({ picture }: Props) {
     <Card className="mt-6 w-96">
       <CardHeader color="blue-gray" className="relative h-56">
         <Link href={picture.links.download}>
-          <Image
-            src={picture.urls.small}
-            width={360}
-            height={250}
-            alt="card-image"
-            className="hover:scale-105"
-          />
+          <div className="relative h-[224px] w-[352px]">
+            <Image
+              src={picture.urls.small}
+              fill={true}
+              alt="card-image"
+              className="hover:scale-105"
+              style={{ objectFit: "cover" }}
+              loading="lazy"
+              sizes="100vh"
+            />
+          </div>
         </Link>
       </CardHeader>
       <div className="tags flex flex-wrap justify-start px-6 mt-1">
@@ -57,11 +61,11 @@ export function CardDefault({ picture }: Props) {
       </div>
       <CardBody className="pt-3">
         <Typography className="mb-1 text-sm flex justify-between">
-          <div className="flex">
+          <span className="flex">
             <HeartIcon strokeWidth={2} className="h-5 w-5 mr-1" />
-            <div>{picture.likes}</div>
-          </div>
-          <div>{date}</div>
+            <span>{picture.likes}</span>
+          </span>
+          <span>{date}</span>
         </Typography>
         <Typography variant="h5" color="blue-gray" className="mb-2 text-sm">
           {picture.alt_description}
