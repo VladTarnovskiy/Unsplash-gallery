@@ -1,6 +1,12 @@
 "use client";
 import { loginUser } from "@/services/getUsers";
-import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import {
+  Card,
+  Input,
+  Button,
+  Typography,
+  Spinner,
+} from "@material-tailwind/react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +16,7 @@ export function SignInForm() {
   const [email, setEmail] = useState("test@test.com");
   const [password, setPassword] = useState("test1234");
   const [alert, setAlert] = useState(false);
+  const [spinner, setSpinner] = useState(false);
   const router = useRouter();
 
   const handlePassword: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -22,6 +29,7 @@ export function SignInForm() {
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = async () => {
     try {
+      setSpinner(true);
       const user = await loginUser({ email, password });
 
       const res = await signIn("credentials", {
@@ -33,19 +41,24 @@ export function SignInForm() {
       });
 
       if (res && !res.error) {
+        setSpinner(false);
         setAlert(false);
         router.push("/");
       }
     } catch {
+      setSpinner(false);
       setAlert(true);
     }
   };
 
   return (
     <Card color="transparent" shadow={false} className="m-auto w-fit mt-12">
-      <Typography variant="h4" color="blue-gray">
-        Sign In
-      </Typography>
+      <div className="flex justify-start items-end">
+        <Typography variant="h4" color="blue-gray" className="h-fit">
+          Sign In
+        </Typography>
+        {spinner && <Spinner className="h-9 w-9 ml-2" />}
+      </div>
       <Typography color="gray" className="mt-1 font-normal">
         Nice to meet you! Enter your details.
       </Typography>
