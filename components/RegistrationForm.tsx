@@ -8,8 +8,8 @@ import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import { Spinner } from "@material-tailwind/react";
 
 export function RegistrationForm() {
-  const [email, setEmail] = useState("test@test.com");
-  const [password, setPassword] = useState("test1234");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [alert, setAlert] = useState(false);
   const [spinner, setSpinner] = useState(false);
 
