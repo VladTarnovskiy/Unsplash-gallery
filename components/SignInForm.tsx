@@ -104,7 +104,7 @@ export function SignInForm() {
               color="red"
               className="mt-[5px] text-center"
             >
-              Invalid data.
+              There is no user with this data
             </Typography>
           )}
           <Typography color="gray" className="mt-4 text-center font-normal">

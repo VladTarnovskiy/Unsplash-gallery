@@ -101,7 +101,7 @@ export function RegistrationForm() {
               color="red"
               className="mt-[5px] text-center"
             >
-              User with current email already exist.
+              A User with the current email already exists.
             </Typography>
           )}
           <Typography color="gray" className="mt-4 text-center font-normal">
