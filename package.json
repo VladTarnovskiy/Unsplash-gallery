@@ -14,7 +14,7 @@
     "@types/bcryptjs": "^2.4.5",
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
-    "next": "13.5.5",
+    "next": "^13.4.19",
     "next-auth": "^4.24.3",
     "react": "^18",
     "react-dom": "^18",

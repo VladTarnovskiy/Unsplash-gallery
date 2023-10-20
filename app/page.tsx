@@ -1,4 +1,3 @@
-"use client";
 import { FilterPictures } from "@/components/FilterPictures";
 import { Pagination } from "@/components/Pagination";
 import { Pictures } from "@/components/Pictures";

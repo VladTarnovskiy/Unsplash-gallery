@@ -25,3 +25,4 @@
 - tailwind
 - material-tailwind
 - json-server
+- bcrypt
