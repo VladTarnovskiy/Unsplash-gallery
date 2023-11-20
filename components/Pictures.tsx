@@ -17,7 +17,7 @@ export const Pictures = () => {
   }, [getPicturesBySearch]);
 
   return (
-    <ul className="pictures-container w-full">
+    <div className="pictures-container w-full">
       {!pictures.length && !loading && "Nothing found."}
       {loading ? (
         <CustomSpinner />
@@ -28,6 +28,6 @@ export const Pictures = () => {
           ))}
         </>
       )}
-    </ul>
+    </div>
   );
 };
