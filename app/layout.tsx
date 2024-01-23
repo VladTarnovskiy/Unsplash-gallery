@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Provider";
 
 export const metadata: Metadata = {
-  title: "Unsplash API",
+  title: "Unsplash Gallery",
   description: "Searching pictures with unsplash",
 };
 

@@ -11,7 +11,7 @@ export const Header = () => {
   return (
     <header className="flex h-16 items-center justify-between px-2">
       <div className="flex justify-start items-center">
-        <div className="">
+        <div className="mb-1">
           <Link href="https://unsplash.com">
             <Image
               className="h-16 w-16"
@@ -22,7 +22,9 @@ export const Header = () => {
             />
           </Link>
         </div>
-        <h1 className="text-4xl hidden sm:block">Unsplash API</h1>
+        <h1 className="text-2xl font-medium hidden sm:block">
+          Unsplash Gallery
+        </h1>
       </div>
       <div>
         {session?.data && (
