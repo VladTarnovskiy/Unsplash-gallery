@@ -22,6 +22,8 @@ const config: Config = withMT({
       "2xl": "1.8rem",
       "3xl": "2rem",
       "4xl": "2.2rem",
+      "5xl": "2.4rem",
+      "6xl": "2.6rem",
     },
   },
   plugins: [],

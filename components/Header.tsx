@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Logo from "/assets/unsplash.svg";
+import LogoImg from "@/public/unsplash.svg";
 import Link from "next/link";
 import { Button } from "@material-tailwind/react";
 import { signOut, useSession } from "next-auth/react";
@@ -15,7 +15,7 @@ export const Header = () => {
           <Link href="https://unsplash.com">
             <Image
               className="h-16 w-16"
-              src={Logo}
+              src={LogoImg}
               width={100}
               height={100}
               alt="Unsplash"

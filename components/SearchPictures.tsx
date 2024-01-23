@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { IconButton, Input } from "@material-tailwind/react";
-import { FormEventHandler, useState } from "react";
-import Search from "/assets/search.svg";
+import { FormEventHandler } from "react";
+import SearchImg from "@/public/search.svg";
 import { usePosts } from "@/store/store";
 import { shallow } from "zustand/shallow";
 
@@ -31,7 +31,7 @@ export const SearchPictures = () => {
       <IconButton variant="gradient" type="submit" className="ml-[-8px]">
         <Image
           className="h-6 w-6"
-          src={Search}
+          src={SearchImg}
           width={20}
           height={20}
           alt="Search"

@@ -70,7 +70,7 @@ export function CardDefault({ picture }: Props) {
         <Typography variant="h5" color="blue-gray" className="mb-2 text-sm">
           {picture.alt_description}
         </Typography>
-        <Typography className=" text-sm">
+        <Typography className="text-sm">
           {picture.description ?? "No description"}
         </Typography>
       </CardBody>
