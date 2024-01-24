@@ -49,7 +49,7 @@ export function CardDefault({ picture }: Props) {
               setSearch(item.title.toLowerCase());
               getPicturesBySearch();
             }}
-            className="hover:cursor-pointer hover:scale-105"
+            className="hover:cursor-pointer hover:scale-105 transition-all"
           >
             <Chip
               variant="ghost"
