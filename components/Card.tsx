@@ -33,7 +33,7 @@ export function CardDefault({ picture }: Props) {
               src={picture.urls.small}
               fill={true}
               alt="card-image"
-              className="hover:scale-105"
+              className="hover:scale-105 transition-all duration-300"
               style={{ objectFit: "cover" }}
               loading="lazy"
               sizes="100vh"
